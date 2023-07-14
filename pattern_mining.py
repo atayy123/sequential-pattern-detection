@@ -245,8 +245,8 @@ def search(writeFile=False):
     builds = pd.read_csv("modified_dataframe.csv").BUILD_ID
 
     # get the range
-    start_id = 23500#builds.min()
-    end_id = 24000#builds.max()
+    start_id = builds.min()
+    end_id = builds.max()
     print("Search between", start_id, "and", end_id, "\n")
     
     # search for patterns
