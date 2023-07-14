@@ -4,3 +4,4 @@ pandas==2.0.2
 nbconvert==7.6.0
 jupyterlab==4.0.2
 pyppeteer==1.0.2
+pandoc==2.3
