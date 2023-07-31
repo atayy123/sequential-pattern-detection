@@ -227,11 +227,14 @@ def spade_mine(start_id, end_id, minSup, maxSup, writeFile=False):
                 f_df.drop(drop_list, inplace=True)
 
                 print("Failed patterns length after eliminating weak extensions:", len(f_df))
-                
+
                 drop_list = []
                 for ind, patt in f_df.iterrows():
-                    if len(set(patt)) != len(patt):
-                        drop_list.append(ind)
+                    try:
+                        if len(set(patt.Patterns)) != len(patt.Patterns):
+                            drop_list.append(ind)
+                    except:
+                        pass
 
                 f_df.drop(drop_list, inplace=True)
 
@@ -239,6 +242,7 @@ def spade_mine(start_id, end_id, minSup, maxSup, writeFile=False):
                 f_df.Patterns = f_df.Patterns.apply(lambda x: " ".join(x))
 
                 f_df = f_df.sort_values("Support", ascending=False)
+
                 if writeFile:
                     f_df.to_csv("pruned_patts.csv")
                 
